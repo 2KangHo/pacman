@@ -10,10 +10,10 @@ import pyglet.image
 from pyglet.image import Animation
 
 
-def load_animation(img, x, y):
+def load_animation(img, x, y, dt):
     raw = pyglet.image.load(img)
     seq = pyglet.image.ImageGrid(raw, x, y)
-    return Animation.from_image_sequence(seq, 0.07, False)
+    return Animation.from_image_sequence(seq, dt, False)
 
 
 class Actor(cocos.sprite.Sprite):
