@@ -10,6 +10,12 @@ import pyglet.image
 from pyglet.image import Animation
 
 
+def load_animation(img, x, y):
+    raw = pyglet.image.load(img)
+    seq = pyglet.image.ImageGrid(raw, x, y)
+    return Animation.from_image_sequence(seq, 0.07, False)
+
+
 class Actor(cocos.sprite.Sprite):
     def __init__(self, img, x, y):
         super(Actor, self).__init__(img, position=(x, y))
