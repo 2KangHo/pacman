@@ -29,6 +29,7 @@ class Actor(cocos.sprite.Sprite):
 
 class Blinky(Actor):
     def __init__(self, x, y, actions):
+        load_animation('Ghosts/Blinky.png', 1, 8, 0.25)
         super(Blinky, self).__init__('', x, y)
         self.do(actions)
 
