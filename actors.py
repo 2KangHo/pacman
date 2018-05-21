@@ -73,5 +73,5 @@ class Player(Actor):
         pacman_down  = load_animation('Player/pacman_down.png', 1, 4, 0.25)
         pacman_left  = load_animation('Player/pacman_left.png', 1, 4, 0.25)
         pacman_right = load_animation('Player/pacman_right.png', 1, 4, 0.25)
-        super(Player, self).__init__(pacman_up, x, y)
+        super(Player, self).__init__('Player/pacman_start.png', x, y)
         self.do(actions)
