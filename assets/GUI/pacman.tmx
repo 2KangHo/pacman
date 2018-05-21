@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="pacman_map.tsx"/>
  <layer name="map0" width="21" height="24">
   <data encoding="base64" compression="zlib">
-   eJzVVMsOwiAQRKW1eDB6sGr9//90iZ2EjLs8gj24yRz2AQzLDs79h3lBqMBQWTcKrpVnt9ShdifYCw6G31KH2ptgFtwN/1VZl+75K0v3nNynx6fVP1J8KOQRz/HkeMlP4w/3PQvRznQ++glel9XnWVwy/Ep9ztXxzOIc8PIJ1ym5B/J8z1DgovGomRNNW9HwrsxjobymbYtXTz+td+N35vm0+rn1HwI+I/nWfCLuydd01Kp/bb2ll1q9a/raQu/cT+Bp8J8oH1y5n72m/Uu9iPP9BjuYCzQ=
+   eJzVVMsOAjEIRO3WXQ9GD77W//9PaVySZiyFWvcgyRyAKZ1QKNF/WGBMDgxOXmScnXe38IS7YWwZO8Vv4Qn3wrgybor/dPLymr+yvOZI7x4fFn8P8cHIS7ymE+OWn8fv9DkLyY5wv/RTdJ0WH2dxruiz+uzl5RzRFTKtSWOEfEvNb/1aTXlX7PcM+ZaaPf3U3g3fGedT8qW5WfMPET0RfG0+JR7I3qPW/S+d1/bFu++l/Vpj37Gfgoeif4T8RHY/e630L/UizfcLrEoKzg==
   </data>
  </layer>
 </map>
