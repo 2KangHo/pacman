@@ -23,5 +23,9 @@ class Scenario(object):
 
 def get_scenario():
     player_start = (336, 176)
+    blinky_start = (336, 432)
+    inky_start   = (304, 368)
+    pinky_start  = (336, 368)
+    clyde_start  = (368, 368)
     sc = Scenario('map0', player_start)
     return sc
