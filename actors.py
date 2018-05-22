@@ -22,6 +22,7 @@ class Die(cocos.sprite.Sprite):
         super(Die, self).__init__(die_img, pos)
         self.do(ac.Delay(1) + ac.CallFunc(self.kill))
 
+
 class Actor(cocos.sprite.Sprite):
     def __init__(self, img, x, y):
         super(Actor, self).__init__(img, position=(x, y))
