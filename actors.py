@@ -22,7 +22,6 @@ class Die(cocos.sprite.Sprite):
         super(Die, self).__init__(die_img, pos)
         self.do(ac.Delay(1) + ac.CallFunc(self.kill))
 
-
 class Actor(cocos.sprite.Sprite):
     def __init__(self, img, x, y):
         super(Actor, self).__init__(img, position=(x, y))
@@ -32,6 +31,20 @@ class Actor(cocos.sprite.Sprite):
     def cshape(self):
         self._cshape.center = eu.Vector2(self.x, self.y)
         return self._cshape
+
+
+class PacDot(Actor):
+    def __init__(self, x, y):
+        super(PacDot, self).__init__('PacDot/pacdot.png', x, y)
+
+
+class Player(Actor):
+    def __init__(self, x, y, actions):
+        pacman_up    = load_animation('Player/pacman_up.png', 1, 4, True)
+        pacman_down  = load_animation('Player/pacman_down.png', 1, 4, True)
+        pacman_left  = load_animation('Player/pacman_left.png', 1, 4, True)
+        pacman_right = load_animation('Player/pacman_right.png', 1, 4, True)
+        super(Player, self).__init__('Player/pacman_start.png', x, y)
 
 
 class Blinky(Actor):
@@ -71,14 +84,4 @@ class Pinky(Actor):
         pinky_left  = load_animation('Ghosts/pinky_left.png', 1, 2, True)
         pinky_right = load_animation('Ghosts/pinky_right.png', 1, 2, True)
         super(Pinky, self).__init__(pinky_up, x, y)
-        self.do(actions)
-
-
-class Player(Actor):
-    def __init__(self, x, y, actions):
-        pacman_up    = load_animation('Player/pacman_up.png', 1, 4, True)
-        pacman_down  = load_animation('Player/pacman_down.png', 1, 4, True)
-        pacman_left  = load_animation('Player/pacman_left.png', 1, 4, True)
-        pacman_right = load_animation('Player/pacman_right.png', 1, 4, True)
-        super(Player, self).__init__('Player/pacman_start.png', x, y)
         self.do(actions)
