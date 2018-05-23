@@ -93,8 +93,8 @@ class GameLayer(cocos.layer.Layer):
         pass
 
     def on_key_release(self, key, _):
-        
-        actors.Player.speed = 0
+        pass
+        #actors.Player.speed *= 1
 
 
 class HUD(cocos.layer.Layer):
