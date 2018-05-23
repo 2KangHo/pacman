@@ -84,10 +84,10 @@ class GameLayer(cocos.layer.Layer):
         clyde_x, clyde_y = ghosts_start[1]
         inky_x, inky_y = ghosts_start[2]
         pinky_x, pinky_y = ghosts_start[3]
-        self.add(actors.Blinky(blinky_x, blinky_y, ac.Delay(5)))
-        self.add(actors.Clyde(clyde_x, clyde_y, ac.Delay(5)))
-        self.add(actors.Inky(inky_x, inky_y, ac.Delay(5)))
-        self.add(actors.Pinky(pinky_x, pinky_y, ac.Delay(5)))
+        self.add(actors.Blinky(blinky_x, blinky_y, ac.Delay(5)+ac.Repeat(self.scenario.ghosts_action[0])))
+        self.add(actors.Clyde(clyde_x, clyde_y, ac.Delay(7)+ac.Repeat(self.scenario.ghosts_action[1])))
+        self.add(actors.Inky(inky_x, inky_y, ac.Delay(9)+ac.Repeat(self.scenario.ghosts_action[2])))
+        self.add(actors.Pinky(pinky_x, pinky_y, ac.Delay(11)+ac.Repeat(self.scenario.ghosts_action[3])))
 
     def create_dots(self):
         pass
