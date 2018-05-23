@@ -78,11 +78,11 @@ class HUD(cocos.layer.Layer):
     def __init__(self):
         super(HUD, self).__init__()
         w, h = director.get_window_size()
-        self.score_text = self._create_text(w/2, h-20)
-        self.score_points = self._create_text(w/2, h-40)
+        self.score_text = self._create_text(w/2, h-18)
+        self.score_points = self._create_text(w/2, h-48)
 
     def _create_text(self, x, y):
-        text = cocos.text.Label(font_size=12, font_name='Emulogic',
+        text = cocos.text.Label(font_size=15, font_name='Emulogic',
                                 anchor_x='center', anchor_y='center')
         text.position = (x, y)
         self.add(text)
