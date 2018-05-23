@@ -5,7 +5,6 @@ import cocos.actions as ac
 from cocos.director import director
 from cocos.scenes.transitions import FadeTRTransition
 
-import pygame.mixer
 import pyglet.app
 
 from gamelayer import new_game
@@ -33,9 +32,6 @@ class MainMenu(cocos.menu.Menu):
         self.create_menu(items)
 
     def on_new_game(self):
-        pygame.mixer.init()
-        pygame.mixer.music.load('assets/Sounds/pacman_beginning.wav')
-        pygame.mixer.music.play(0)
         director.push(FadeTRTransition(new_game(), duration=2))
 
     def show_fps(self, val):

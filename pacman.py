@@ -14,4 +14,3 @@ if __name__ == '__main__':
 
     director.init(caption='PAC-MAN', width=672, height=768)
     director.run(new_menu())
-    

@@ -8,6 +8,8 @@ import cocos.text
 import cocos.actions as ac
 import cocos.collision_model as cm
 
+import pygame.mixer
+
 import actors
 import mainmenu
 from scenario import get_scenario
@@ -23,11 +25,21 @@ class GameLayer(cocos.layer.Layer):
         self.score = self._score = 0
         self.lives = self._lives = 3
 
+        self.create_player()
+        self.create_ghosts()
+        self.create_dots()
+
         w, h = director.get_window_size()
         cell_size = 32
         self.coll_man = cm.CollisionManagerGrid(0, w, 0, h, cell_size, cell_size)
         self.coll_man_dots = cm.CollisionManagerGrid(0, w, 0, h, cell_size, cell_size)
 
+        pygame.mixer.init()
+        self.sounds={'die'   : pygame.mixer.Sound("assets/Sounds/pacman_death.wav"), \
+                     'intro' : pygame.mixer.Sound("assets/Sounds/pacman_beginning.wav"), \
+                     'waka'  : pygame.mixer.Sound("assets/Sounds/pacman_chomp.wav")}
+                     
+        self.sounds['intro'].play()
         self.schedule(self.game_loop)
     
     @property
@@ -51,8 +63,6 @@ class GameLayer(cocos.layer.Layer):
     def game_loop(self, _):
         self.coll_man.clear()
         self.coll_man_dots.clear()
-        self.create_player()
-        self.create_ghosts()
         for obj in self.get_children():
             if isinstance(obj, actors.Blinky):
                 self.coll_man.add(obj)
@@ -65,9 +75,22 @@ class GameLayer(cocos.layer.Layer):
 
     def create_player(self):
         player_start = self.scenario.player_start
+        x, y = player_start
+        self.add(actors.Player(x, y, ac.Delay(5)))
 
     def create_ghosts(self):
         ghosts_start = self.scenario.ghosts_start
+        blinky_x, blinky_y = ghosts_start[0]
+        clyde_x, clyde_y = ghosts_start[1]
+        inky_x, inky_y = ghosts_start[2]
+        pinky_x, pinky_y = ghosts_start[3]
+        self.add(actors.Blinky(blinky_x, blinky_y, ac.Delay(5)))
+        self.add(actors.Clyde(clyde_x, clyde_y, ac.Delay(5)))
+        self.add(actors.Inky(inky_x, inky_y, ac.Delay(5)))
+        self.add(actors.Pinky(pinky_x, pinky_y, ac.Delay(5)))
+
+    def create_dots(self):
+        pass
 
     def on_key_release(self, key, _):
         
@@ -117,9 +140,6 @@ def game_over():
     return scene
 
 
-
-
-'''
 Game_Map = \
 [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -139,10 +159,9 @@ Game_Map = \
  [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0],
  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
  [0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0],
- [0, 7, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 7, 0],
+ [0, 7, 1, 1, 0, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 0, 1, 1, 7, 0],
  [0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0],
  [0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0],
  [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-'''

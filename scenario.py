@@ -35,5 +35,8 @@ def get_scenario():
     player_start = (336, 176)
     ghosts_start = [(336, 432), (304, 368), (336, 368), (368, 368)]
     sc = Scenario('map0', player_start, ghosts_start)
-    sc.actions = [move(0, 0)]
+    sc.actions = [[],
+                  [],
+                  [],
+                  []]
     return sc
