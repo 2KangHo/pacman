@@ -26,7 +26,9 @@ class GameLayer(cocos.layer.Layer):
         w, h = director.get_window_size()
         cell_size = 32
         self.coll_man = cm.CollisionManagerGrid(0, w, 0, h, cell_size, cell_size)
-        self.coll_man_slots = cm.CollisionManagerGrid(0, w, 0, h, cell_size, cell_size)
+        self.coll_man_dots = cm.CollisionManagerGrid(0, w, 0, h, cell_size, cell_size)
+
+        self.schedule(self.game_loop)
     
     @property
     def lives(self):
@@ -48,6 +50,28 @@ class GameLayer(cocos.layer.Layer):
 
     def game_loop(self, _):
         self.coll_man.clear()
+        self.coll_man_dots.clear()
+        self.create_player()
+        self.create_ghosts()
+        for obj in self.get_children():
+            if isinstance(obj, actors.Blinky):
+                self.coll_man.add(obj)
+            if isinstance(obj, actors.Clyde):
+                self.coll_man.add(obj)
+            if isinstance(obj, actors.Inky):
+                self.coll_man.add(obj)
+            if isinstance(obj, actors.Pinky):
+                self.coll_man.add(obj)
+
+    def create_player(self):
+        player_start = self.scenario.player_start
+
+    def create_ghosts(self):
+        ghosts_start = self.scenario.ghosts_start
+
+    def on_key_release(self, key, _):
+        
+        actors.Player.speed = 0
 
 
 class HUD(cocos.layer.Layer):
@@ -77,6 +101,20 @@ def new_game():
     hud = HUD()
     game_layer = GameLayer(hud, scenario)
     return cocos.scene.Scene(background, game_layer, hud)
+
+
+def game_over():
+    w, h = director.get_window_size()
+    layer = cocos.layer.Layer()
+    text = cocos.text.Label('Game Over', position=(w*0.5, h*0.5),
+                            font_name='Emulogic', font_size=64,
+                            anchor_x='center', anchor_y='center')
+    layer.add(text)
+    scene = cocos.scene.Scene(layer)
+    new_scene = FadeTransition(mainmenu.new_menu())
+    func = lambda: director.replace(new_scene)
+    scene.do(ac.Delay(3) + ac.CallFunc(func))
+    return scene
 
 
 
